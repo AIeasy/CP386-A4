@@ -38,13 +38,15 @@ void logStart(char *tID) {
 void *thread_run(void * thread){
   int *t_id = (int*)t;
   printf("--> Customer/Thread %d\n",t_id);
-  printf("        Allocated resources:\n");
-  printf("        Needed:\n");
-  printf("        Available:\n");
-  logStart(t_id);
-  logFinish(t_id);
-  logRelease(t_id);
-  printf("New available:\n");
+  printf("        Allocated resources:\n");//printing out all the allocated resources
+  printf("        Needed:\n");//all the maxinum needed resources
+  printf("        Available:\n");//available resources
+  logStart(t_id);//log start
+  sleep(3);
+  logFinish(t_id);//log finish
+  sleep(3);
+  logRelease(t_id);//log release all thread used resources
+  printf("New available:\n");//print out new available resources
   return;
 }
 
