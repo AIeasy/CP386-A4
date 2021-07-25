@@ -34,7 +34,6 @@ void logStart(char *tID) {
 	printf("Thread is realseasing resources");
 }
 
-
 void *thread_run(void * thread){
   int *t_id = (int*)t;
   printf("--> Customer/Thread %d\n",t_id);
