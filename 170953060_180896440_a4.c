@@ -28,7 +28,7 @@ void logStart(char *tID) {
 	printf("Thread has started");
 }
 void logFinish(char *tID) {
-	printf("Thread has finished);
+	printf("Thread has finished");
 }
 void logStart(char *tID) {
 	printf("Thread is realseasing resources");
