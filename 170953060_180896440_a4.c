@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <semaphore.h>
-
+11
 
 int read_File(char * f_name){
   FILE *in_put = fopen(f_name,"r");
