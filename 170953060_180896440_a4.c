@@ -9,7 +9,7 @@
 #include <semaphore.h>
 
 
-int read_File(char * f_name){
+int **read_File(char * f_name){
 	FILE *in_put = fopen(f_name,"r");
 	char matrix[5][4];
 	int i,j;
