@@ -32,9 +32,21 @@ void *thread_run(void * thread){
   printf("        Allocated resources:\n");
   printf("        Needed:\n");
   printf("        Available:\n");
-  logStart();
-  logFinsh();
-  logRelease();
+  logStart(t_id);
+  logFinish(t_id);
+  logRelease(t_id);
   printf("New available:\n");
   return;
+}
+
+
+
+void logStart(char *tID) {
+	printf("Thread has started");
+}
+void logFinish(char *tID) {
+	printf("Thread has finished);
+}
+void logStart(char *tID) {
+	printf("Thread is realseasing resources");
 }
