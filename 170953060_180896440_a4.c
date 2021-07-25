@@ -30,7 +30,7 @@ int safe_check(){
 
 int read_File(char * f_name){
   FILE *in_put = fopen(f_name,"r");
-  if(in_puit == NULL)
+  if(in_put == NULL)
    {
       printf("Error! Can not open the input file\n");   
       return -1;             
