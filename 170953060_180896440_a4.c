@@ -24,6 +24,15 @@ int read_File(char * f_name){
   
 }
 
+void logStart(char *tID) {
+	printf("Thread has started");
+}
+void logFinish(char *tID) {
+	printf("Thread has finished);
+}
+void logStart(char *tID) {
+	printf("Thread is realseasing resources");
+}
 
 
 void *thread_run(void * thread){
@@ -41,12 +50,3 @@ void *thread_run(void * thread){
 
 
 
-void logStart(char *tID) {
-	printf("Thread has started");
-}
-void logFinish(char *tID) {
-	printf("Thread has finished);
-}
-void logStart(char *tID) {
-	printf("Thread is realseasing resources");
-}
