@@ -10,15 +10,20 @@
 
 
 int read_File(char * f_name){
-  FILE *in_put = fopen(f_name,"r");
-  if(in_puit == NULL)
-   {
-      printf("Error! Can not open the input file\n");   
-      return -1;             
-   }
-    int LINE_LENGTH = 128;
-    char *line = (char *)malloc(sizeof(char) * LINE_LENGTH);
-  
+	FILE *in_put = fopen(f_name,"r");
+	char matrix[5][4];
+	int i,j;
+	if(in_puit == NULL){
+		printf("Error! Can not open the input file\n");
+		return -1;
+	}
+	for(i=0; i<5; i++) {
+		for(j=0; j<4; j++) {
+		    fscanf(in_put," %c, ",&matrix[i][j]);
+		}
+	}
+	
+	return matrix;
   
   
   
