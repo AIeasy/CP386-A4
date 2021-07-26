@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
 	//safe check
 	//wait for request 
 	//read request, process request? 
-	//
+	//RQ request,RL release,* output,Run find safe sequence.
 }
 
 int safe_check(){
@@ -30,8 +30,20 @@ int safe_check(){
 int request(){
 	//
 }
-
-
+int release(){
+}
+int output(){
+}
+int Run(){
+}
+int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first > second, else return 0.
+	for(int i =0;i<4;i++）{
+		if(fir[i]<=sec[i]){
+			return 0;
+		}
+	}
+		 return 1;   
+}
 int read_File(char * f_name){
   FILE *in_put = fopen(f_name,"r");
   if(in_puit == NULL)
