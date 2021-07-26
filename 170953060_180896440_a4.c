@@ -18,19 +18,23 @@ int main(int argc, char *argv[]){
 	//available = argv[]
 	//read file and generate max.
 	//safe check
-	//wait for request -> request
+	//wait for request 
+	//read request, process request? 
+	//
 }
 
 int safe_check(){
 	//
 	return 1;
 }
-
+int request(){
+	//
+}
 
 
 int read_File(char * f_name){
   FILE *in_put = fopen(f_name,"r");
-  if(in_put == NULL)
+  if(in_puit == NULL)
    {
       printf("Error! Can not open the input file\n");   
       return -1;             
