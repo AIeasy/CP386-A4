@@ -33,9 +33,12 @@ int request(int n,int req[]){
 		return 0;
 	}
 	if(compare_matrix(req,Avaiable)==1){//if req less than Avai, try to allocation
-		//allocation
-		//check safe
-		//rollback or keep going
+		alloc(n,req);
+		if(safe_check()==0){
+			rollback(n,req);
+			//rollback or keep going
+			//let thread wait?
+		}
 	}
 }
 void alloc(int n,int req[]){//Try to allocation sources 
