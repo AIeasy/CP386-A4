@@ -27,8 +27,30 @@ int safe_check(){
 	//
 	return 1;
 }
-int request(){
-	//
+int request(int n,int req[]){
+	if(compare_matrix(req,need[n])==0){//check if request greater than need.
+		printf("request greater than need");
+		return 0;
+	}
+	if(compare_matrix(req,Avaiable)==1){//if req less than Avai, try to allocation
+		//allocation
+		//check safe
+		//rollback or keep going
+	}
+}
+void alloc(int n,int req[]){//Try to allocation sources 
+	for(int i=0;i<4;i++){
+		Available[i] = Available[i] - req[i];
+		Allocation[n][i] = Allocation[n][i] + req[i];
+		Need[n][i] = Need[n][i] - req[i];
+	}
+}
+void rollback(int n,int req[]){//roll back to origin 
+	for(int i=0;i<4;i++){
+		Available[i] = Available[i] + req[i];
+		Allocation[n][i] = Allocation[n][i] - req[i];
+		Need[n][i] = Need[n][i] + req[i];
+	}
 }
 int release(){
 }
@@ -36,9 +58,9 @@ int output(){
 }
 int Run(){
 }
-int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first > second, else return 0.
+int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first <= second, else return 0.
 	for(int i =0;i<4;i++）{
-		if(fir[i]<=sec[i]){
+		if(fir[i]>sec[i]){
 			return 0;
 		}
 	}
