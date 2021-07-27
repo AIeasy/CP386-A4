@@ -55,11 +55,22 @@ void rollback(int n,int req[]){//roll back to origin
 		Need[n][i] = Need[n][i] + req[i];
 	}
 }
-int release(){
+int release(int n,int rel){//release resources 
+	if(compare_matrix(rel,Allocation[n])==1){
+		for(int i = 0;i<4;i++){
+			Allocation[n][i] = Allocation[n][i] - rel[i];
+			Available[i] += rel[i];
+			//need do not need to change?
+			printf("The resources have been released successfully");
+		}
+	}
+	else{
+		printf("invalid release");
+	}
 }
-int output(){
+int output(){//print all matirx
 }
-int Run(){
+int Run(){//find safe seq
 }
 int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first <= second, else return 0.
 	for(int i =0;i<4;i++）{
