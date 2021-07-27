@@ -29,7 +29,7 @@ int safe_check(){
 }
 int request(int n,int req[]){
 	if(compare_matrix(req,need[n])==0){//check if request greater than need.
-		printf("request greater than need");
+		printf("request greater than need\n");
 		return 0;
 	}
 	if(compare_matrix(req,Avaiable)==1){//if req less than Avai, try to allocation
@@ -61,14 +61,43 @@ int release(int n,int rel){//release resources
 			Allocation[n][i] = Allocation[n][i] - rel[i];
 			Available[i] += rel[i];
 			//need do not need to change?
-			printf("The resources have been released successfully");
+			printf("The resources have been released successfully\n");
 		}
 	}
 	else{
 		printf("invalid release");
 	}
 }
-int output(){//print all matirx
+int status(){//print all matirx
+	printf("Available Resources:\n");
+	for(int i = 0;i<4;i++){
+		printf(Available[i] + " ");
+	}
+	printf("\n");
+	printf("Maximum Resources:\n");
+	for(int k =0;k<5;k++){
+		for(i=0;i<4;i++){
+			printf(max[k][i]+" ");
+		}
+		printf("\n");
+	}
+	printf("\n");
+	printf("Allocated Resources:\n");
+	for(int k =0;k<5;k++){
+		for(i=0;i<4;i++){
+			printf(Allocation[k][i]+" ");
+		}
+		printf("\n");
+	}
+	printf("\n");
+	printf("Need Resources:\n")
+		for(int k =0;k<5;k++){
+		for(i=0;i<4;i++){
+			printf(Need[k][i]+" ");
+		}
+		printf("\n");
+	}
+	printf("\n");
 }
 int Run(){//find safe seq
 }
