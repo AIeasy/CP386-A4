@@ -24,7 +24,27 @@ int main(int argc, char *argv[]){
 }
 
 int safe_check(){
-	//
+	int work[4]; // work = avai
+	for(int i=0;i<4;i++){
+		work[i] = Available[i];
+	}
+	int small;
+	int safe[0,0,0,0,0]; //safe condition, set to false when init.
+	for(i=0;i<5;i++){//check if all can be in safe condition
+		if(safe[i]==0 && Allocation[i][0] <= work[0] && Allocation[i][1] <= work[1] && Allocation[i][2] <= work[2] && Allocation[i][3] <= work[3]){//try to alloc
+			work[0] += Allocation[i][0];
+			work[1] += Allocation[i][1];
+			work[2] += Allocation[i][2];
+			work[3] += Allocation[i][3];
+			safe[i] = 1;//change safe to 1
+			i=0;//check again
+		}
+	}
+	for(i=0;i<5;i++){ //check if all in safe condition
+		if(safe[i]==0){ // return false if not.
+			return 0;
+		}
+	}
 	return 1;
 }
 int request(int n,int req[]){
