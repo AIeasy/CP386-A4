@@ -14,6 +14,7 @@ int main(int argc, char *argv[]){
         int Allocation[n][m];
         int Available[m];
         int Need[n][m]; //need = max - alloca
+	int safe_seq[5];
 	
 	//available = argv[]
 	//read file and generate max.
@@ -29,6 +30,7 @@ int safe_check(){
 		work[i] = Available[i];
 	}
 	int small;
+	int k=0;
 	int safe[0,0,0,0,0]; //safe condition, set to false when init.
 	for(i=0;i<5;i++){//check if all can be in safe condition
 		if(safe[i]==0 && Allocation[i][0] <= work[0] && Allocation[i][1] <= work[1] && Allocation[i][2] <= work[2] && Allocation[i][3] <= work[3]){//try to alloc
@@ -37,6 +39,7 @@ int safe_check(){
 			work[2] += Allocation[i][2];
 			work[3] += Allocation[i][3];
 			safe[i] = 1;//change safe to 1
+			safe_seq[k++] = i;
 			i=0;//check again
 		}
 	}
@@ -47,7 +50,7 @@ int safe_check(){
 	}
 	return 1;
 }
-int request(int n,int req[]){
+void request(int n,int req[]){
 	if(compare_matrix(req,need[n])==0){//check if request greater than need.
 		printf("request greater than need\n");
 		return 0;
@@ -58,6 +61,9 @@ int request(int n,int req[]){
 			rollback(n,req);
 			//rollback or keep going
 			//let thread wait?
+		else{
+			printf("State is safe, and request is satisfied");
+		}
 		}
 	}
 }
@@ -91,13 +97,15 @@ int release(int n,int rel){//release resources
 int status(){//print all matirx
 	printf("Available Resources:\n");
 	for(int i = 0;i<4;i++){
-		printf(Available[i] + " ");
+		printf("%d",Available[i]);
+		printf(" ");
 	}
 	printf("\n");
 	printf("Maximum Resources:\n");
 	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf(max[k][i]+" ");
+			printf("%d",max[k][i]);
+			printf(" ");
 		}
 		printf("\n");
 	}
@@ -105,7 +113,8 @@ int status(){//print all matirx
 	printf("Allocated Resources:\n");
 	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf(Allocation[k][i]+" ");
+			printf("%d",Allocation[k][i]);
+			printf(" ");
 		}
 		printf("\n");
 	}
@@ -113,13 +122,20 @@ int status(){//print all matirx
 	printf("Need Resources:\n")
 		for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf(Need[k][i]+" ");
+			printf("%d",Need[k][i]);
+			printf(" ");
 		}
 		printf("\n");
 	}
 	printf("\n");
 }
-int Run(){//find safe seq
+void Run(){
+	printf("Safe Sequence is:");
+	for(int i =0;i<5;i++){
+		printf("%d",safe_seq[i]);
+		printf(" ");
+	}
+	print("\n");
 }
 int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first <= second, else return 0.
 	for(int i =0;i<4;i++）{
