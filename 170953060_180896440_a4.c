@@ -86,7 +86,7 @@ int release(int n,int rel){//release resources
 		for(int i = 0;i<4;i++){
 			Allocation[n][i] = Allocation[n][i] - rel[i];
 			Available[i] += rel[i];
-			//need do not need to change?
+			//need do not change?
 			printf("The resources have been released successfully\n");
 		}
 	}
