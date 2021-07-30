@@ -58,7 +58,7 @@ int main(int argc, char *argv[]){
 				}else{
 					
 				input[i]=atoi(token);
-				token = strtok(NULL," ");
+				token = strtok4(NULL," ");
 				}
 				i++;
 			}
@@ -265,9 +265,22 @@ void *thread_run(void * thread){
   int *t_id = (int*)t;
   printf("--> Customer/Thread %d\n",t_id);
   printf("        Allocated resources:\n");//printing out all the allocated resources
-  printf(
+  for (int x = 0;x<5;x++){
+	  for(int i=0;i<4;i++){
+		  printf("%d",Allocation[x][i]);
+	  }
+	  printf("\n");
+  }
   printf("        Needed:\n");//all the maxinum needed resources
+	  for (int y = 0;y<5;y++){
+	  for(int j=0;j<4;j++){
+		  printf("%d",Allocation[y][j]);
+	  }
+	  printf("\n");
+  }
   printf("        Available:\n");//available resources
+  for(int z = 0;z<4;z++){
+  printf("%d",Available[z]);
   logStart(t_id);//log start
   sleep(3);
   logFinish(t_id);//log finish
