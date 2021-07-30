@@ -58,7 +58,7 @@ int main(int argc, char *argv[]){
 				}else{
 					
 				input[i]=atoi(token);
-				token = strtok4(NULL," ");
+				token = strtok(NULL," ");
 				}
 				i++;
 			}
@@ -81,6 +81,7 @@ int main(int argc, char *argv[]){
 						}
 					}
 					pthread_exit(NULL);
+				}
 		
 					
 				else{
