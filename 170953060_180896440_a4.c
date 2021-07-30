@@ -27,7 +27,8 @@ int main(int argc, char *argv[]){
 	}else{
 		char command[256];
 		while(1){
-			int input[100];
+			int input[4];
+			int t_id;
 			printf('Enter command:\n');
 			scanf("%s",string);
 			char* token = strtok(command," ");
@@ -48,10 +49,26 @@ int main(int argc, char *argv[]){
 					}else{
 						printf("ERROR: PLEASE INPUT RIGHT MODE COMMAND");
 						return;
+					}
+					
+				}
+				
 				input[i]=atoi(token);
 				token = strtok(NULL," ");
 			}
+			if (mode ==1){
+				request(input[1],
+			} else if (mode ==2){
 			
+			} else if (mode ==3){
+				
+			}else if (mode == 4){
+			
+			}else if (mode == 5){
+				
+			}
+				
+				
 			
 			
 			
