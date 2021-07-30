@@ -13,7 +13,7 @@ typedef struct Customer{
     int max[4];
     int need[4];
 }Customer;
-
+Customer *customers;
 int n = 5,m = 4;//n number of processes, m number of resources types.
 //int max[n][m];
 int Allocation[n][m];
@@ -22,6 +22,13 @@ int Need[n][m]; //need = max - alloca
 int safe_seq[5];
 int max={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 int main(int argc, char *argv[]){
+	Customer *cus =(Customer)*malloc(sizeof(Customer)*5);
+	customers=cus;
+	for(int c=0;c<5;c++){
+		for (int m =0;m<4;m++){
+			customers[cus].max[m]=max[c][m];	
+		}
+	}
 	
 	for( int i=1;i<m;i++){
 		Available[i-1]=atoi(argv[i]);
