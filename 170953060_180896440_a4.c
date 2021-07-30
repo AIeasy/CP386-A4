@@ -32,7 +32,22 @@ int main(int argc, char *argv[]){
 			scanf("%s",string);
 			char* token = strtok(command," ");
 			int i =0;
+			int mode =0;
 			while (token!=NULL){
+				if (i==0){
+					if(strcmp("RQ",token)==0){
+						mode =1;
+					}else if (strcmp("RL",token)==0){
+						mode = 2;
+					}else if (strcmp("STATUS",token)==0){
+						mode=3;
+					}else if (strcmp("RUN",token)==0){
+						mode= 4;
+					}else if (strcmp("EXIT",token)==0){
+						mode =5;
+					}else{
+						printf("ERROR: PLEASE INPUT RIGHT MODE COMMAND");
+						return;
 				input[i]=atoi(token);
 				token = strtok(NULL," ");
 			}
