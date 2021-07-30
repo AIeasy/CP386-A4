@@ -9,9 +9,9 @@
 #include <semaphore.h>
 typedef struct Customer{
     int ID;
-    int Allocation[4];
+    int Allocate[4];
     int max[4];
-    int Need[4];
+    int need[4];
 }Customer;
 
 int n = 5,m = 4;//n number of processes, m number of resources types.
@@ -22,15 +22,7 @@ int Need[n][m]; //need = max - alloca
 int safe_seq[5];
 int max={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 int main(int argc, char *argv[]){
-	Customer* cus = (Customer*) malloc(sizeof(Customer)*5);
-    	customers=cus;
-	for (int c=0;c<5;c++){
-		cus[c].ID=c;
-		for(int r=0;r<4;r++){
-			cus[c].max[r]=max[c][r];	
-		}
-		
-	}
+	
 	for( int i=1;i<m;i++){
 		Available[i-1]=atoi(argv[i]);
 		}
@@ -129,7 +121,7 @@ int main(int argc, char *argv[]){
 	//RQ request,RL release,* output,Run find safe sequence.
 }
 
-int safe_check(){
+int safe_check(int n){
 	int work[4]; // work = avai
 	for(int i=0;i<4;i++){
 		work[i] = Available[i];
@@ -138,11 +130,11 @@ int safe_check(){
 	int k=0;
 	int safe[0,0,0,0,0]; //safe condition, set to false when init.
 	for(i=0;i<5;i++){//check if all can be in safe condition
-		if(safe[i]==0 && Allocation[i][0] <= work[0] && Allocation[i][1] <= work[1] && Allocation[i][2] <= work[2] && Allocation[i][3] <= work[3]){//try to alloc
-			work[0] += Allocation[i][0];
-			work[1] += Allocation[i][1];
-			work[2] += Allocation[i][2];
-			work[3] += Allocation[i][3];
+		if(safe[i]==0 && customers[n].Allocation[0] <= work[0] && customers[n].Allocation[1] <= work[1] && customers[n].Allocation[2] <= work[2] && customers[n].Allocation[3] <= work[3]){//try to alloc
+			work[0] += customers[n].Allocation[0];
+			work[1] += customers[n].Allocation[1];
+			work[2] += customers[n].Allocation[2];
+			work[3] += customers[n].Allocation[3];
 			safe[i] = 1;//change safe to 1
 			safe_seq[k++] = i;
 			i=0;//check again
@@ -186,10 +178,10 @@ void rollback(int n,int req[],int Available[]){//roll back to origin
 		customers[n].Need[i] += req[i];
 	}
 }
-int release(int n,int rel){//release resources 
-	if(compare_matrix(rel,Allocation[n])==1){
+int release(int n,int rel,int Available){//release resources 
+	if(compare_matrix(rel,customers[n].Allocation)==1){
 		for(int i = 0;i<4;i++){
-			Allocation[n][i] = Allocation[n][i] - rel[i];
+			customers[n].Allocation[i] -=  rel[i];
 			Available[i] += rel[i];
 			//need do not change?
 			printf("The resources have been released successfully\n");
@@ -199,7 +191,7 @@ int release(int n,int rel){//release resources
 		printf("invalid release");
 	}
 }
-int status(){//print all matirx
+int status(int Available){//print all matirx
 	printf("Available Resources:\n");
 	for(int i = 0;i<4;i++){
 		printf("%d",Available[i]);
@@ -209,7 +201,7 @@ int status(){//print all matirx
 	printf("Maximum Resources:\n");
 	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",max[k][i]);
+			printf("%d",customers[k].max[i]);
 			printf(" ");
 		}
 		printf("\n");
@@ -218,23 +210,23 @@ int status(){//print all matirx
 	printf("Allocated Resources:\n");
 	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",Allocation[k][i]);
+			printf("%d",customers[k].Allocation[i]);
 			printf(" ");
 		}
 		printf("\n");
 	}
 	printf("\n");
 	printf("Need Resources:\n")
-		for(int k =0;k<5;k++){
+	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",Need[k][i]);
+			printf("%d",customers[k].Need[i]);
 			printf(" ");
 		}
 		printf("\n");
 	}
 	printf("\n");
 }
-void Run(){
+void Run(int safe_seq[]){
 	
 	printf("Safe Sequence is:");
 	for(int i =0;i<5;i++){
