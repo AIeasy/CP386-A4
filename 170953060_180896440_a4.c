@@ -8,12 +8,12 @@
 #include <time.h>
 #include <semaphore.h>
 int n = 5,m = 4;//n number of processes, m number of resources types.
-int max[n][m];
+//int max[n][m];
 int Allocation[n][m];
 int Available[m];
 int Need[n][m]; //need = max - alloca
 int safe_seq[5];
-	
+int max={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 int main(int argc, char *argv[]){
 	
 	for( int i=1;i<m;i++){
@@ -72,7 +72,17 @@ int main(int argc, char *argv[]){
 			}else if (mode == 4){
 				if(safe_check()==1){
 					Run();
-					thread_run();
+					pthread_t my_thread;
+					for (int x=0;x<5;x++){
+						int pthread = *(p);
+						pthread = pthread_create(&my_thread,NULL,thread_run(),&p[x]);
+						if (pthread !=0){
+							print("ERROR, THREAD FAIL");	
+						}
+					}
+					pthread_exit(NULL);
+		
+					
 				else{
 					printf("Current thread list is not safe, can not perform run threads\n");
 					return;
@@ -209,12 +219,14 @@ int status(){//print all matirx
 	printf("\n");
 }
 void Run(){
+	
 	printf("Safe Sequence is:");
 	for(int i =0;i<5;i++){
 		printf("%d",safe_seq[i]);
 		printf(" ");
 	}
 	print("\n");
+	
 }
 int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first <= second, else return 0.
 	for(int i =0;i<4;i++）{
@@ -253,6 +265,7 @@ void *thread_run(void * thread){
   int *t_id = (int*)t;
   printf("--> Customer/Thread %d\n",t_id);
   printf("        Allocated resources:\n");//printing out all the allocated resources
+  printf(
   printf("        Needed:\n");//all the maxinum needed resources
   printf("        Available:\n");//available resources
   logStart(t_id);//log start
