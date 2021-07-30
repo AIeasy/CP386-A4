@@ -15,10 +15,16 @@ int Need[n][m]; //need = max - alloca
 int safe_seq[5];
 	
 int main(int argc, char *argv[]){
-
-	//available = argv[]
+	
+	for( int i=1;i<m;i++){
+		Available[i-1]=argv[i]
+		}
 	//read file and generate max.
 	//safe check
+	if (safe_check()==0){
+		printf('Error: current thread list is not safe');
+		return;
+	}
 	//wait for request 
 	//read request, process request? 
 	//RQ request,RL release,* output,Run find safe sequence.
