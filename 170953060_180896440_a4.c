@@ -129,7 +129,7 @@ int main(int argc, char *argv[]){
 	//RQ request,RL release,* output,Run find safe sequence.
 }
 
-int safe_check(){
+int safe_check(int Available[]){
 	int work[4]; // work = avai
 	for(int i=0;i<4;i++){
 		work[i] = Available[i];
@@ -138,11 +138,11 @@ int safe_check(){
 	int k=0;
 	int safe[0,0,0,0,0]; //safe condition, set to false when init.
 	for(i=0;i<5;i++){//check if all can be in safe condition
-		if(safe[i]==0 && Allocation[i][0] <= work[0] && Allocation[i][1] <= work[1] && Allocation[i][2] <= work[2] && Allocation[i][3] <= work[3]){//try to alloc
-			work[0] += Allocation[i][0];
-			work[1] += Allocation[i][1];
-			work[2] += Allocation[i][2];
-			work[3] += Allocation[i][3];
+		if(safe[i]==0 && customers[n].Allocation[0] <= work[0] && customers[n].Allocation[1] <= work[1] && customers[n].Allocation[2] <= work[2] && customers[n].Allocation[3] <= work[3]){//try to alloc
+			work[0] += customers[n].Allocation[0];
+			work[1] += customers[n].Allocation[1];
+			work[2] += customers[n].Allocation[2];
+			work[3] += customers[n].Allocation[3];
 			safe[i] = 1;//change safe to 1
 			safe_seq[k++] = i;
 			i=0;//check again
@@ -186,10 +186,10 @@ void rollback(int n,int req[],int Available[]){//roll back to origin
 		customers[n].Need[i] += req[i];
 	}
 }
-int release(int n,int rel){//release resources 
-	if(compare_matrix(rel,Allocation[n])==1){
+int release(int n,int rel,int Available[]){//release resources 
+	if(compare_matrix(rel,customers[n].Allocation)==1){
 		for(int i = 0;i<4;i++){
-			Allocation[n][i] = Allocation[n][i] - rel[i];
+			customers[n].Allocation[i] -= rel[i];
 			Available[i] += rel[i];
 			//need do not change?
 			printf("The resources have been released successfully\n");
@@ -209,7 +209,7 @@ int status(int Available[]){//print all matirx
 	printf("Maximum Resources:\n");
 	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",max[k][i]);
+			printf("%d",customers[k].max[i]);
 			printf(" ");
 		}
 		printf("\n");
@@ -218,23 +218,23 @@ int status(int Available[]){//print all matirx
 	printf("Allocated Resources:\n");
 	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",Allocation[k][i]);
+			printf("%d",customers[k].Allocation[i]);
 			printf(" ");
 		}
 		printf("\n");
 	}
 	printf("\n");
 	printf("Need Resources:\n")
-		for(int k =0;k<5;k++){
+	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",Need[k][i]);
+			printf("%d",customers[k].Need[i]);
 			printf(" ");
 		}
 		printf("\n");
 	}
 	printf("\n");
 }
-void Run(){
+void Run(int safe_seq[]){
 	
 	printf("Safe Sequence is:");
 	for(int i =0;i<5;i++){
