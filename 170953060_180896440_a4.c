@@ -14,20 +14,19 @@ typedef struct Customer{
     int Need[4];
 }Customer;
 
-int n = 5,m = 4;//n number of processes, m number of resources types.
-//int max[n][m];
-int Allocation[n][m];
-int Available[m];
-int Need[n][m]; //need = max - alloca
-int safe_seq[5];
-int max={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
+
+
 int main(int argc, char *argv[]){
+	int Available[m];
+	int safe_seq[5];
 	Customer* cus = (Customer*) malloc(sizeof(Customer)*5);
     	customers=cus;
 	for (int c=0;c<5;c++){//init max
 		cus[c].ID=c;
 		for(int r=0;r<4;r++){
-			cus[c].max[r]=max[c][r];	
+			cus[c].Allocation[r]=0;
+			cus[c].max[r]=max[c][r];
+			cus[c].Need[r]=max[c][r];
 		}
 		
 	}
