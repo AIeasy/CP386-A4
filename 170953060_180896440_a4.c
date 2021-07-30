@@ -52,20 +52,36 @@ int main(int argc, char *argv[]){
 					}
 					
 				}
-				
+				if (i==1){
+					tid = atoi(token);
+					token = strtok(NULL," ")
+				}else{
+					
 				input[i]=atoi(token);
 				token = strtok(NULL," ");
+				}
+				i++;
 			}
 			if (mode ==1){
-				request(input[1],
+				request(tid,input);
 			} else if (mode ==2){
-			
+				release(tid,input);
 			} else if (mode ==3){
+				status();
 				
 			}else if (mode == 4){
+				if(safe_check()==1){
+					Run();
+					thread_run();
+				else{
+					printf("Current thread list is not safe, can not perform run threads\n");
+					return;
+				}
+				
 			
 			}else if (mode == 5){
-				
+				printf("Exiting Program....\n");
+				return;
 			}
 				
 				
