@@ -7,6 +7,12 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <semaphore.h>
+typedef struct customer{
+    int ID;
+    int Allocate[4];
+    int max[4];
+    int need[4];
+}customer;
 int n = 5,m = 4;//n number of processes, m number of resources types.
 //int max[n][m];
 int Allocation[n][m];
