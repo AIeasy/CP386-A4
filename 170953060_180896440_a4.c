@@ -67,7 +67,7 @@ int main(int argc, char *argv[]){
 					
 				}
 				if (i==1){
-					tid = atoi(token);
+					t_id = atoi(token);
 					token = strtok(NULL," ")
 				}else{
 					
@@ -88,7 +88,7 @@ int main(int argc, char *argv[]){
 					Run();
 					pthread_t my_thread;
 					for (int x=0;x<5;x++){
-						int pthread = *(p);
+						int p=safe_seq[x];
 						pthread = pthread_create(&my_thread,NULL,thread_run(),&p[x]);
 						if (pthread !=0){
 							print("ERROR, THREAD FAIL");	
