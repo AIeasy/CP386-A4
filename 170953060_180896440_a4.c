@@ -24,6 +24,31 @@ int main(int argc, char *argv[]){
 	if (safe_check()==0){
 		printf('Error: current thread list is not safe');
 		return;
+	}else{
+		char command[256];
+		while(1){
+			int input[100];
+			printf('Enter command:\n');
+			scanf("%s",string);
+			char* token = strtok(command," ");
+			int i =0;
+			while (token!=NULL){
+				input[i]=atoi(token);
+				token = strtok(NULL," ");
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+			
+			
+			
 	}
 	//wait for request 
 	//read request, process request? 
