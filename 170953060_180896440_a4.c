@@ -13,7 +13,7 @@ typedef struct Customer{
     int max[4];
     int need[4];
 }Customer;
-Customer *customers;
+
 int n = 5,m = 4;//n number of processes, m number of resources types.
 //int max[n][m];
 int Allocation[n][m];
@@ -22,13 +22,6 @@ int Need[n][m]; //need = max - alloca
 int safe_seq[5];
 int max={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 int main(int argc, char *argv[]){
-	Customer *cus =(Customer)*malloc(sizeof(Customer)*5);
-	customers=cus;
-	for(int c=0;c<5;c++){
-		for (int m =0;m<4;m++){
-			customers[cus].max[m]=max[c][m];	
-		}
-	}
 	
 	for( int i=1;i<m;i++){
 		Available[i-1]=atoi(argv[i]);
@@ -154,15 +147,15 @@ int safe_check(){
 	}
 	return 1;
 }
-void request(int n,int req[]){
-	if(compare_matrix(req,need[n])==0){//check if request greater than need.
+void request(int n,int req[],int Available){
+	if(compare_matrix(req,customers[n].need)==0){//check if request greater than need.
 		printf("request greater than need\n");
 		return 0;
 	}
 	if(compare_matrix(req,Avaiable)==1){//if req less than Avai, try to allocation
-		alloc(n,req);
+		alloc(n,req,Availble);
 		if(safe_check()==0){
-			rollback(n,req);
+			rollback(n,req,Availble);
 			//rollback or keep going
 			//let thread wait?
 		else{
@@ -171,18 +164,18 @@ void request(int n,int req[]){
 		}
 	}
 }
-void alloc(int n,int req[]){//Try to allocation sources 
+void alloc(int n,int req[],int Available[]){//Try to allocation sources 
 	for(int i=0;i<4;i++){
 		Available[i] = Available[i] - req[i];
-		Allocation[n][i] = Allocation[n][i] + req[i];
-		Need[n][i] = Need[n][i] - req[i];
+		customers[n].Allocation[i] += req[i];
+		customers[n].Need[i] -= req[i];
 	}
 }
-void rollback(int n,int req[]){//roll back to origin 
+void rollback(int n,int req[],int Available[]){//roll back to origin 
 	for(int i=0;i<4;i++){
 		Available[i] = Available[i] + req[i];
-		Allocation[n][i] = Allocation[n][i] - req[i];
-		Need[n][i] = Need[n][i] + req[i];
+		customers[n].Allocation[i] -= req[i];
+		customers[n].Need[i] += req[i];
 	}
 }
 int release(int n,int rel){//release resources 
