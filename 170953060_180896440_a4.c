@@ -24,19 +24,19 @@ int max={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 int main(int argc, char *argv[]){
 	Customer* cus = (Customer*) malloc(sizeof(Customer)*5);
     	customers=cus;
-	for (int c=0;c<5;c++){
+	for (int c=0;c<5;c++){//init max
 		cus[c].ID=c;
 		for(int r=0;r<4;r++){
 			cus[c].max[r]=max[c][r];	
 		}
 		
 	}
-	for( int i=1;i<m;i++){
+	for( int i=1;i<m;i++){// read available from command line.
 		Available[i-1]=atoi(argv[i]);
 		}
 	//read file and generate max.
 	//safe check
-	if (safe_check()==0){
+	if (safe_check()==0){//check if in safe condition.
 		printf('Error: current thread list is not safe');
 		return;
 	}else{
@@ -78,11 +78,11 @@ int main(int argc, char *argv[]){
 				i++;
 			}
 			if (mode ==1){
-				request(tid,input);
+				request(tid,input,Available);
 			} else if (mode ==2){
-				release(tid,input);
+				release(tid,input,Available);
 			} else if (mode ==3){
-				status();
+				status(Available);
 				
 			}else if (mode == 4){
 				if(safe_check()==1){
@@ -199,7 +199,7 @@ int release(int n,int rel){//release resources
 		printf("invalid release");
 	}
 }
-int status(){//print all matirx
+int status(int Available[]){//print all matirx
 	printf("Available Resources:\n");
 	for(int i = 0;i<4;i++){
 		printf("%d",Available[i]);
