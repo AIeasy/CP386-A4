@@ -14,7 +14,7 @@ typedef struct Customer{
     int Need[4];
 }Customer;
 Customer *customers;
-
+int max={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 
 int main(int argc, char *argv[]){
 	int Available[4];
