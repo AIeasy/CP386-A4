@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
 			int input[4];
 			int t_id;
 			printf('Enter command:\n');
-			scanf("%s",string);
+			scanf("%s",command);
 			char* token = strtok(command," ");
 			int i =0;
 			int mode =0;
