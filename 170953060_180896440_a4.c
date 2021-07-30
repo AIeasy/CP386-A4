@@ -7,15 +7,15 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <semaphore.h>
-
-int main(int argc, char *argv[]){
-	int n = 5,m = 4;//n number of processes, m number of resources types.
-        int max[n][m];
-        int Allocation[n][m];
-        int Available[m];
-        int Need[n][m]; //need = max - alloca
-	int safe_seq[5];
+int n = 5,m = 4;//n number of processes, m number of resources types.
+int max[n][m];
+int Allocation[n][m];
+int Available[m];
+int Need[n][m]; //need = max - alloca
+int safe_seq[5];
 	
+int main(int argc, char *argv[]){
+
 	//available = argv[]
 	//read file and generate max.
 	//safe check
