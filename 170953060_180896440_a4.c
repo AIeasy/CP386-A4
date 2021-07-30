@@ -13,7 +13,7 @@ typedef struct Customer{
     int max[4];
     int Need[4];
 }Customer;
-
+Customer *customers;
 
 
 int main(int argc, char *argv[]){
