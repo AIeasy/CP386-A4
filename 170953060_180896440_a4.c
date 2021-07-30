@@ -17,7 +17,7 @@ int max={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 int main(int argc, char *argv[]){
 	
 	for( int i=1;i<m;i++){
-		Available[i-1]=argv[i]
+		Available[i-1]=atoi(argv[i]);
 		}
 	//read file and generate max.
 	//safe check
