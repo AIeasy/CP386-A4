@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
 			while (token!=NULL){
 				input[i]=atoi(token);
 				token = strtok(NULL," ");
-			
+			}
 			
 			
 			
