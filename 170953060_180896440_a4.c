@@ -178,10 +178,10 @@ void rollback(int n,int req[],int Available[]){//roll back to origin
 		customers[n].Need[i] += req[i];
 	}
 }
-int release(int n,int rel){//release resources 
-	if(compare_matrix(rel,Allocation[n])==1){
+int release(int n,int rel,int Available){//release resources 
+	if(compare_matrix(rel,customers[n].Allocation)==1){
 		for(int i = 0;i<4;i++){
-			Allocation[n][i] = Allocation[n][i] - rel[i];
+			customers[n].Allocation[i] -=  rel[i];
 			Available[i] += rel[i];
 			//need do not change?
 			printf("The resources have been released successfully\n");
@@ -191,7 +191,7 @@ int release(int n,int rel){//release resources
 		printf("invalid release");
 	}
 }
-int status(){//print all matirx
+int status(int Available){//print all matirx
 	printf("Available Resources:\n");
 	for(int i = 0;i<4;i++){
 		printf("%d",Available[i]);
@@ -201,7 +201,7 @@ int status(){//print all matirx
 	printf("Maximum Resources:\n");
 	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",max[k][i]);
+			printf("%d",customers[k].max[i]);
 			printf(" ");
 		}
 		printf("\n");
@@ -210,23 +210,23 @@ int status(){//print all matirx
 	printf("Allocated Resources:\n");
 	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",Allocation[k][i]);
+			printf("%d",customers[k].Allocation[i]);
 			printf(" ");
 		}
 		printf("\n");
 	}
 	printf("\n");
 	printf("Need Resources:\n")
-		for(int k =0;k<5;k++){
+	for(int k =0;k<5;k++){
 		for(i=0;i<4;i++){
-			printf("%d",Need[k][i]);
+			printf("%d",customers[k].Need[i]);
 			printf(" ");
 		}
 		printf("\n");
 	}
 	printf("\n");
 }
-void Run(){
+void Run(int safe_seq[]){
 	
 	printf("Safe Sequence is:");
 	for(int i =0;i<5;i++){
