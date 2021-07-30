@@ -17,7 +17,7 @@ typedef struct Customer{
 
 
 int main(int argc, char *argv[]){
-	int Available[m];
+	int Available[4];
 	int safe_seq[5];
 	Customer* cus = (Customer*) malloc(sizeof(Customer)*5);
     	customers=cus;
