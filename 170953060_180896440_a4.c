@@ -81,7 +81,7 @@ int main(int argc, char *argv[]){
 					t_id = atoi(token);
 					
 				}else{
-					input[i]=atoi(token);
+					input[i-2]=atoi(token);
 				
 				}
 				token = strtok(NULL," ");
@@ -89,10 +89,6 @@ int main(int argc, char *argv[]){
 			}
 			
 			if (mode ==1){
-				printf("%d",t_id);
-				for(k=0;k<4;k++){
-					printf("%d",input[k]);
-				}
 				request(t_id,input,Available,safe_seq);
 			} else if (mode ==2){
 				release(t_id,input,Available);
