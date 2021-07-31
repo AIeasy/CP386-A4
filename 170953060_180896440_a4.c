@@ -92,7 +92,7 @@ int main(int argc, char *argv[]){
 						int p=safe_seq[x];
 						my_thread = pthread_create(&my_thread,NULL,thread_run(my_thread),&p);
 						if (my_thread !=0){
-							print("ERROR, THREAD FAIL");	
+							printf("ERROR, THREAD FAIL");	
 						}
 					}
 					pthread_exit(NULL);
@@ -241,7 +241,7 @@ void Run(int safe_seq[]){
 		printf("%d",safe_seq[i]);
 		printf(" ");
 	}
-	print("\n");
+	printf("\n");
 	
 }
 int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first <= second, else return 0.
