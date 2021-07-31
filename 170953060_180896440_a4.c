@@ -19,7 +19,7 @@ int max[5][4]={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 int Available[4];
 int main(int argc, char *argv[]){
 	
-        printf("Number of Customers: 5");
+        printf("Number of Customers: 5\n");
 	int safe_seq[5];
 	Customer* cus = (Customer*) malloc(sizeof(Customer)*5);
     	customers=cus;
@@ -39,7 +39,10 @@ int main(int argc, char *argv[]){
 		Available[p-1]=k;
 		p++;
 	}
-		
+	printf("Currently Available resources:")
+	for(k=0;k<4;k++){
+		printf("%d",Available[k]);
+	}
 	//read file and generate max.
 	//safe check
 	if (safe_check(Available,safe_seq)==0){//check if in safe condition.
@@ -83,7 +86,12 @@ int main(int argc, char *argv[]){
 				token = strtok(NULL," ");
 				i++;
 			}
+			
 			if (mode ==1){
+				printf("%d",t_id);
+				for(k=0;k<4;k++){
+					printf("%d",input[k]);
+				}
 				request(t_id,input,Available,safe_seq);
 			} else if (mode ==2){
 				release(t_id,input,Available);
