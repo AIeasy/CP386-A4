@@ -259,7 +259,7 @@ void logFinish(char *tID) {
 	printf("Thread has finished");
 	return;
 }
-void logStart(char *tID) {
+void logRelease(char *tID) {
 	printf("Thread is realseasing resources");
 	return;
 }
