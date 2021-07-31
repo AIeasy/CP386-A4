@@ -65,11 +65,11 @@ int main(int argc, char *argv[]){
 						mode =1;
 					}else if (strcmp("RL",token)==0){
 						mode = 2;
-					}else if (strcmp("Status",token)==0){
+					}else if (strcmp("Status\n",token)==0){
 						mode=3;
-					}else if (strcmp("RUN",token)==0){
+					}else if (strcmp("Run\n",token)==0){
 						mode= 4;
-					}else if (strcmp("EXIT",token)==0){
+					}else if (strcmp("Exit\n",token)==0){
 						mode =5;
 					}else{
 						printf("ERROR: PLEASE INPUT RIGHT MODE COMMAND\n");
@@ -285,6 +285,7 @@ void *thread_run(void *thread){
 	  for(int a =0;a<4;a++){
 		  printf("%d",customers[x].Allocation[a]);	  
  	   }
+	  printf("\n");
   }
   printf("        Needed:\n");//all the maxinum needed resources
 	  for (int y = 0;y<5;y++){
