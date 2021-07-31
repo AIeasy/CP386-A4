@@ -55,7 +55,7 @@ int main(int argc, char *argv[]){
 			int input[4];
 			int t_id;
 			printf("Enter command:\n");
-			scanf("%s",command);
+			fgets(command, 300, stdin);
 			char* token = strtok(command," ");
 			int i =0;
 			int mode =0;
