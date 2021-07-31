@@ -40,12 +40,12 @@ int main(int argc, char *argv[]){
 		printf('Error: current thread list is not safe');
 		return;
 	}else{
-		char command[256];
+		char* command = malloc(sizeof(char*)*300);
 		while(1){
 			int input[4];
 			int t_id;
 			printf('Enter command:\n');
-			scanf("%s",command);
+			fgets(command, 100, stdin);
 			char* token = strtok(command," ");
 			int i =0;
 			int mode =0;
@@ -67,14 +67,14 @@ int main(int argc, char *argv[]){
 					}
 					
 				}
-				if (i==1){
+				else if (i==1){
 					t_id = atoi(token);
-					token = strtok(NULL," ");
-				}else{
 					
-				input[i]=atoi(token);
-				token = strtok(NULL," ");
+				}else{
+					input[i]=atoi(token);
+				
 				}
+				token = strtok(NULL," ");
 				i++;
 			}
 			if (mode ==1){
@@ -86,11 +86,11 @@ int main(int argc, char *argv[]){
 				
 			}else if (mode == 4){
 				if(safe_check(Available,safe_seq)==1){
-					Run();
+					Run(safe_seq);
 					pthread_t my_thread;
 					for (int x=0;x<5;x++){
 						int p=safe_seq[x];
-						my_thread = pthread_create(&my_thread,NULL,thread_run(my_thread),&p);
+						my_thread = pthread_create(&my_thread,NULL,thread_run,&p);
 						if (my_thread !=0){
 							printf("ERROR, THREAD FAIL");	
 						}
@@ -291,7 +291,7 @@ void *thread_run(void *thread){
   	logRelease(t_id);//log release all thread used resources
   	printf("New available:\n");//print out new available resources
   }
-  return;
+  return 0;
 }
 
 
