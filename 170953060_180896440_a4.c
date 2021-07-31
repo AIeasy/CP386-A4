@@ -41,8 +41,9 @@ int main(int argc, char *argv[]){
 	}
 	printf("Currently Available resources:")
 	for(k=0;k<4;k++){
-		printf("%d",Available[k]);
+		printf("%d ",Available[k]);
 	}
+	
 	//read file and generate max.
 	//safe check
 	if (safe_check(Available,safe_seq)==0){//check if in safe condition.
