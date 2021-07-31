@@ -279,13 +279,14 @@ void* thread_run(void * thread){
   }
   printf("        Available:\n");//available resources
   for(int z = 0;z<4;z++){
-  printf("%d",Available[z]);
-  logStart(t_id);//log start
-  sleep(3);
-  logFinish(t_id);//log finish
-  sleep(3);
-  logRelease(t_id);//log release all thread used resources
-  printf("New available:\n");//print out new available resources
+  	printf("%d",Available[z]);
+  	logStart(t_id);//log start
+  	sleep(3);
+  	logFinish(t_id);//log finish
+  	sleep(3);
+  	logRelease(t_id);//log release all thread used resources
+  	printf("New available:\n");//print out new available resources
+  }
   return;
 }
 
