@@ -253,12 +253,15 @@ int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first 
 }
 void logStart(char *tID) {
 	printf("Thread has started");
+	return;
 }
 void logFinish(char *tID) {
 	printf("Thread has finished");
+	return;
 }
 void logStart(char *tID) {
 	printf("Thread is realseasing resources");
+	return;
 }
 
 void* thread_run(void * thread){
