@@ -101,7 +101,7 @@ int main(int argc, char *argv[]){
 					pthread_t my_thread;
 					for (int x=0;x<5;x++){
 						int p=safe_seq[x];
-						my_thread = pthread_create(&my_thread,NULL,thread_run,&p);
+						my_thread = pthread_create(&my_thread,NULL,thread_run,(void*)&p);
 						if (my_thread !=0){
 							printf("ERROR, THREAD FAIL");	
 						}
@@ -297,12 +297,12 @@ void *thread_run(void *thread){
   printf("        Available:\n");//available resources
   for(int z = 0;z<4;z++){
   	printf("%d",Available[z]);
-  	logStart(t_id);//log start
-  	sleep(3);
-  	logFinish(t_id);//log finish
-  	sleep(3);
-  	logRelease(t_id);//log release all thread used resources
-  	printf("New available:\n");//print out new available resources
+  	//logStart(t_id);//log start
+  	//sleep(3);
+  	//logFinish(t_id);//log finish
+  	//sleep(3);
+  	//logRelease(t_id);//log release all thread used resources
+  	//printf("New available:\n");//print out new available resources
   }
   return 0;
 }
