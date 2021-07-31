@@ -289,9 +289,9 @@ void *thread_run(void *thread){
   }
   printf("        Needed:\n");//all the maxinum needed resources
 	  for (int y = 0;y<5;y++){
-	  for(int n=0;n<4;n++){
-		  printf("%s",customers[y].Need[n]);
-	  }
+	  	for(int n=0;n<4;n++){
+			printf("%s",customers[y].Need[n]);
+	  	}
 	  printf("\n");
   }
   printf("        Available:\n");//available resources
