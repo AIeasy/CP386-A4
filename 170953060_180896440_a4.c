@@ -43,6 +43,7 @@ int main(int argc, char *argv[]){
 	for(k=0;k<4;k++){
 		printf("%d ",Available[k]);
 	}
+	printf("\n");
 	printf("Maximum resources from file:\n");
 	for(int k = 0;k<5;k++){
 		for(int i = 0;i<4;i++){
