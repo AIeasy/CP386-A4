@@ -77,9 +77,9 @@ int main(int argc, char *argv[]){
 				i++;
 			}
 			if (mode ==1){
-				request(tid,input,Available);
+				request(t_id,input,Available);
 			} else if (mode ==2){
-				release(tid,input,Available);
+				release(t_id,input,Available);
 			} else if (mode ==3){
 				status(Available);
 				
