@@ -30,7 +30,7 @@ int main(int argc, char *argv[]){
 		}
 		
 	}
-	for( int i=1;i<m;i++){// read available from command line.
+	for( int i=1;i<4;i++){// read available from command line.
 		Available[i-1]=atoi(argv[i]);
 		}
 	//read file and generate max.
