@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <semaphore.h>
+void *threadRun(void *thread);
 typedef struct Customer{
     int ID;
     int Allocation[4];
