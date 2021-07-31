@@ -68,7 +68,7 @@ int main(int argc, char *argv[]){
 				}
 				if (i==1){
 					t_id = atoi(token);
-					token = strtok(NULL," ")
+					token = strtok(NULL," ");
 				}else{
 					
 				input[i]=atoi(token);
