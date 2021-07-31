@@ -31,10 +31,13 @@ int main(int argc, char *argv[]){
 		}
 		
 	}
-	for(int i = 1; i<5; i++){
-            int k = atoi(argv[i]);
-            Available[i-1] = k;
+	int i =1;
+	while(argv[i]!=NULL){
+		k = atoi(argv[i]);
+		Available[i-1]=k;
+		i++;
 	}
+		
 	//read file and generate max.
 	//safe check
 	if (safe_check(Available,safe_seq)==0){//check if in safe condition.
