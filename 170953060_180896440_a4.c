@@ -149,14 +149,14 @@ int safe_check(int Available[],int safe_seq[]){
 	int k=0;
 	int safe[5]={0,0,0,0,0}; //safe condition, set to false when init.
 	for(int n=0;n<5;n++){//check if all can be in safe condition
-		if(safe[n]==0 && customers[n].Allocation[0] <= work[0] && customers[n].Allocation[1] <= work[1] && customers[n].Allocation[2] <= work[2] && customers[n].Allocation[3] <= work[3]){//try to alloc
+		if(safe[n]==0 && customers[n].Need[0] <= work[0] && customers[n].Need[1] <= work[1] && customers[n].Need[2] <= work[2] && customers[n].Need[3] <= work[3]){//try to alloc
 			work[0] += customers[n].Allocation[0];
 			work[1] += customers[n].Allocation[1];
 			work[2] += customers[n].Allocation[2];
 			work[3] += customers[n].Allocation[3];
 			safe[n] = 1;//change safe to 1
 			safe_seq[k++] = n;
-			n=0;//check again
+			n=-1;//check again
 		}
 	}
 	for(int i=0;i<5;i++){ //check if all in safe condition
