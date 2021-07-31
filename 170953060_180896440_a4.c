@@ -15,9 +15,9 @@ typedef struct Customer{
 }Customer;
 Customer *customers;
 int max[5][4]={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
-
+int Available[4];
 int main(int argc, char *argv[]){
-	int Available[4];
+
 	int safe_seq[5];
 	Customer* cus = (Customer*) malloc(sizeof(Customer)*5);
     	customers=cus;
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]){
 		}
 	//read file and generate max.
 	//safe check
-	if (safe_check()==0){//check if in safe condition.
+	if (safe_check(Available,safe_seq)==0){//check if in safe condition.
 		printf('Error: current thread list is not safe');
 		return;
 	}else{
@@ -77,20 +77,20 @@ int main(int argc, char *argv[]){
 				i++;
 			}
 			if (mode ==1){
-				request(t_id,input,Available);
+				request(t_id,input,Available,safe_seq);
 			} else if (mode ==2){
 				release(t_id,input,Available);
 			} else if (mode ==3){
 				status(Available);
 				
 			}else if (mode == 4){
-				if(safe_check()==1){
+				if(safe_check(Available,safe_seq)==1){
 					Run();
 					pthread_t my_thread;
 					for (int x=0;x<5;x++){
 						int p=safe_seq[x];
-						pthread = pthread_create(&my_thread,NULL,thread_run(),&p[x]);
-						if (pthread !=0){
+						my_thread = pthread_create(&my_thread,NULL,thread_run(),&p);
+						if (my_thread !=0){
 							print("ERROR, THREAD FAIL");	
 						}
 					}
@@ -128,14 +128,14 @@ int main(int argc, char *argv[]){
 	//RQ request,RL release,* output,Run find safe sequence.
 }
 
-int safe_check(int Available[]){
+int safe_check(int Available[],int safe_seq[]){
 	int work[4]; // work = avai
 	for(int i=0;i<4;i++){
 		work[i] = Available[i];
 	}
 	int small;
 	int k=0;
-	int safe=[0,0,0,0,0]; //safe condition, set to false when init.
+	int safe[5]={0,0,0,0,0}; //safe condition, set to false when init.
 	for(int n=0;n<5;n++){//check if all can be in safe condition
 		if(safe[n]==0 && customers[n].Allocation[0] <= work[0] && customers[n].Allocation[1] <= work[1] && customers[n].Allocation[2] <= work[2] && customers[n].Allocation[3] <= work[3]){//try to alloc
 			work[0] += customers[n].Allocation[0];
@@ -154,14 +154,14 @@ int safe_check(int Available[]){
 	}
 	return 1;
 }
-void request(int n,int req[],int Available){
-	if(compare_matrix(req,customers[n].need)==0){//check if request greater than need.
+void request(int n,int req[],int Available[],int safe_seq[]){
+	if(compare_matrix(req,customers[n].Need)==0){//check if request greater than need.
 		printf("request greater than need\n");
 		return 0;
 	}
 	if(compare_matrix(req,Available)==1){//if req less than Avai, try to allocation
-		alloc(n,req,Availble);
-		if(safe_check()==0){
+		alloc(n,req,Available);
+		if(safe_check(Available,safe_seq)==0){
 			rollback(n,req,Available);
 			//rollback or keep going
 			//let thread wait?
@@ -185,7 +185,7 @@ void rollback(int n,int req[],int Available[]){//roll back to origin
 		customers[n].Need[i] += req[i];
 	}
 }
-int release(int n,int rel,int Available[]){//release resources 
+int release(int n,int rel[],int Available[]){//release resources 
 	if(compare_matrix(rel,customers[n].Allocation)==1){
 		for(int i = 0;i<4;i++){
 			customers[n].Allocation[i] -= rel[i];
