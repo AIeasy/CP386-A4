@@ -14,7 +14,8 @@ Transfer the folder to your Virtual Machine if needed<br />
 Run on Linux by changing the directory to the folder<br />
 download the make file and put it in the same directory<br />
 cd FOLDER_NAME<br />
-replace FOLDER_NAME with the name of the folder. To run, use makefile To compile your program:<br />
+replace FOLDER_NAME with the name of the folder.<br />
+To run, use makefile To compile your program:<br />
 
 
 run commond: make runq1<br />
