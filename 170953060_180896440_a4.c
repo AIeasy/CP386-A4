@@ -31,11 +31,12 @@ int main(int argc, char *argv[]){
 		}
 		
 	}
-	int i =1;
-	while(argv[i]!=NULL){
-		k = atoi(argv[i]);
-		Available[i-1]=k;
-		i++;
+	int p =1;
+	int k=0;
+	while(argv[p]!=NULL){
+		k = atoi(argv[p]);
+		Available[p-1]=k;
+		p++;
 	}
 		
 	//read file and generate max.
@@ -49,7 +50,7 @@ int main(int argc, char *argv[]){
 			int input[4];
 			int t_id;
 			printf('Enter command:\n');
-			fgets(command, 100, stdin);
+			scanf("%s",command);
 			char* token = strtok(command," ");
 			int i =0;
 			int mode =0;
