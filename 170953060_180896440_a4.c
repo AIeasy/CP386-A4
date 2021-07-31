@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
 	//read file and generate max.
 	//safe check
 	if (safe_check(Available,safe_seq)==0){//check if in safe condition.
-		printf('Error: current thread list is not safe');
+		printf("Error: current thread list is not safe\n");
 		return;
 	}else{
 		char* command = malloc(sizeof(char*)*300);
