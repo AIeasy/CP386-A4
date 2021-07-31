@@ -90,7 +90,7 @@ int main(int argc, char *argv[]){
 					pthread_t my_thread;
 					for (int x=0;x<5;x++){
 						int p=safe_seq[x];
-						my_thread = pthread_create(&my_thread,NULL,thread_run(),&p);
+						my_thread = pthread_create(&my_thread,NULL,thread_run(my_thread),&p);
 						if (my_thread !=0){
 							print("ERROR, THREAD FAIL");	
 						}
