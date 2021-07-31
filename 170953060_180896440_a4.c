@@ -39,11 +39,18 @@ int main(int argc, char *argv[]){
 		Available[p-1]=k;
 		p++;
 	}
-	printf("Currently Available resources:");
+	printf("Currently Available resources: ");
 	for(k=0;k<4;k++){
 		printf("%d ",Available[k]);
 	}
-	
+	printf("\n");
+	printf("Maximum resources from file:\n");
+	for(int k =0;k<5;k++){
+		for(int i = 0;i<4;i++){
+			printf("%d ",customers[k].max[i]);
+		}
+		printf("\n");
+	}
 	//read file and generate max.
 	//safe check
 	if (safe_check(Available,safe_seq)==0){//check if in safe condition.
@@ -103,7 +110,7 @@ int main(int argc, char *argv[]){
 						int p=safe_seq[x];
 						my_thread = pthread_create(&my_thread,NULL,thread_run,(void*)&p);
 						if (my_thread !=0){
-							printf("ERROR, THREAD FAIL");	
+							printf("ERROR, THREAD FAIL\n");	
 						}
 					}
 					pthread_exit(NULL);
@@ -175,7 +182,7 @@ void request(int n,int req[],int Available[],int safe_seq[]){
 		alloc(n,req,Available);
 		if(safe_check(Available,safe_seq)==0){
 			rollback(n,req,Available);
-			printf("not safe");
+			printf("not safe\n");
 			//rollback or keep going
 			//let thread wait?
 		}
@@ -289,9 +296,9 @@ void *thread_run(void *thread){
   }
   printf("        Needed:\n");//all the maxinum needed resources
 	  for (int y = 0;y<5;y++){
-	  	for(int n=0;n<4;n++){
-			printf("%c",customers[y].Need[n]);
-	  	}
+	  for(int n=0;n<4;n++){
+		  printf("%s",customers[y].Need[n]);
+	  }
 	  printf("\n");
   }
   printf("        Available:\n");//available resources
