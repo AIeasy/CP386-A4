@@ -135,8 +135,8 @@ int safe_check(int Available[]){
 	}
 	int small;
 	int k=0;
-	int safe[0,0,0,0,0]; //safe condition, set to false when init.
-	for(i=0;i<5;i++){//check if all can be in safe condition
+	int safe=[0,0,0,0,0]; //safe condition, set to false when init.
+	for(int i=0;i<5;i++){//check if all can be in safe condition
 		if(safe[i]==0 && customers[n].Allocation[0] <= work[0] && customers[n].Allocation[1] <= work[1] && customers[n].Allocation[2] <= work[2] && customers[n].Allocation[3] <= work[3]){//try to alloc
 			work[0] += customers[n].Allocation[0];
 			work[1] += customers[n].Allocation[1];
@@ -147,7 +147,7 @@ int safe_check(int Available[]){
 			i=0;//check again
 		}
 	}
-	for(i=0;i<5;i++){ //check if all in safe condition
+	for(int i=0;i<5;i++){ //check if all in safe condition
 		if(safe[i]==0){ // return false if not.
 			return 0;
 		}
@@ -159,15 +159,15 @@ void request(int n,int req[],int Available){
 		printf("request greater than need\n");
 		return 0;
 	}
-	if(compare_matrix(req,Avaiable)==1){//if req less than Avai, try to allocation
+	if(compare_matrix(req,Available)==1){//if req less than Avai, try to allocation
 		alloc(n,req,Availble);
 		if(safe_check()==0){
-			rollback(n,req,Availble);
+			rollback(n,req,Available);
 			//rollback or keep going
 			//let thread wait?
+		}
 		else{
 			printf("State is safe, and request is satisfied");
-		}
 		}
 	}
 }
@@ -207,7 +207,7 @@ int status(int Available[]){//print all matirx
 	printf("\n");
 	printf("Maximum Resources:\n");
 	for(int k =0;k<5;k++){
-		for(i=0;i<4;i++){
+		for(int i=0;i<4;i++){
 			printf("%d",customers[k].max[i]);
 			printf(" ");
 		}
@@ -216,16 +216,16 @@ int status(int Available[]){//print all matirx
 	printf("\n");
 	printf("Allocated Resources:\n");
 	for(int k =0;k<5;k++){
-		for(i=0;i<4;i++){
+		for(int i=0;i<4;i++){
 			printf("%d",customers[k].Allocation[i]);
 			printf(" ");
 		}
 		printf("\n");
 	}
 	printf("\n");
-	printf("Need Resources:\n")
+	printf("Need Resources:\n");
 	for(int k =0;k<5;k++){
-		for(i=0;i<4;i++){
+		for(int i=0;i<4;i++){
 			printf("%d",customers[k].Need[i]);
 			printf(" ");
 		}
@@ -244,28 +244,13 @@ void Run(int safe_seq[]){
 	
 }
 int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first <= second, else return 0.
-	for(int i =0;i<4;i++）{
+	for(int i =0;i<4;i++){
 		if(fir[i]>sec[i]){
 			return 0;
 		}
 	}
 		 return 1;   
 }
-int read_File(char * f_name){
-  FILE *in_put = fopen(f_name,"r");
-  if(in_puit == NULL)
-   {
-      printf("Error! Can not open the input file\n");   
-      return -1;             
-   }
-    int LINE_LENGTH = 128;
-    char *line = (char *)malloc(sizeof(char) * LINE_LENGTH);
-  
-  
-  
-  
-}
-
 void logStart(char *tID) {
 	printf("Thread has started");
 }
@@ -276,8 +261,8 @@ void logStart(char *tID) {
 	printf("Thread is realseasing resources");
 }
 
-void *thread_run(void * thread){
-  int *t_id = (int*)t;
+void* thread_run(void * thread){
+  int *t_id = (int*)thread;
   printf("--> Customer/Thread %d\n",t_id);
   printf("        Allocated resources:\n");//printing out all the allocated resources
   for (int x =0;x<5;x++){
