@@ -7,16 +7,17 @@ CP386 A04 - Final Assignment
 Assignment to practice the concept of deadlock avoidance for CP386 (Wilfrid Laurier University)
 
 # Installation
-Required: Linux or Linux Virutal Machine
+Required: Linux or Linux Virutal Machine<br />
 
-Download or clone Github repository
-Transfer the folder to your Virtual Machine if needed
-Run on Linux by changing the directory to the folder
-cd FOLDER_NAME
-replace FOLDER_NAME with the name of the folder. To run, use makefile To compile your program:
+Download or clone Github repository<br />
+Transfer the folder to your Virtual Machine if needed<br />
+Run on Linux by changing the directory to the folder<br />
+download the make file and put it in the same directory<br />
+cd FOLDER_NAME<br />
+replace FOLDER_NAME with the name of the folder. To run, use makefile To compile your program:<br />
 
-download the make file and put it in the same path
-run commond: make runq1
+
+run commond: make runq1<br />
 
 
 # Screenshots
