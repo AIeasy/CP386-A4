@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
 		Available[p-1]=k;
 		p++;
 	}
-	printf("Currently Available resources:")
+	printf("Currently Available resources:");
 	for(k=0;k<4;k++){
 		printf("%d ",Available[k]);
 	}
