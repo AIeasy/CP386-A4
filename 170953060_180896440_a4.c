@@ -295,7 +295,7 @@ void *thread_run(void *thread){
   printf("        Needed:\n");//all the maxinum needed resources
 	for (int y= 0;y<4;y++){
 		printf("%d",customers[*t_id].Need[y]);
-
+	}
   printf("        Available:\n");//available resources
   for(int z = 0;z<4;z++){
   	printf("%d",Available[z]);
