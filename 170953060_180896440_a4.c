@@ -289,13 +289,14 @@ void *thread_run(void *thread){
   printf("--> Customer/Thread %d\n",*t_id);
   printf("        Allocated resources:\n");//printing out all the allocated resources
   for (int x = 0; x <4 ;x++){
-	  printf("%d",customers[*t_id].Allocation[x]);
+	  printf("%	d",customers[*t_id].Allocation[x]);
   }
   printf("\n");
   printf("        Needed:\n");//all the maxinum needed resources
 	for (int y= 0;y<4;y++){
-		printf("%d",customers[*t_id].Need[y]);
+		printf("%	d",customers[*t_id].Need[y]);
 	}
+  printf("\n");
   printf("        Available:\n");//available resources
   for(int z = 0;z<4;z++){
   	printf("%d",Available[z]);
