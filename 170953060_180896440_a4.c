@@ -72,7 +72,7 @@ int main(int argc, char *argv[]){
 					}else if (strcmp("EXIT",token)==0){
 						mode =5;
 					}else{
-						printf("ERROR: PLEASE INPUT RIGHT MODE COMMAND");
+						printf("ERROR: PLEASE INPUT RIGHT MODE COMMAND\n");
 						return;
 					}
 					
