@@ -24,7 +24,7 @@ replace '10 5 7 8' with 4 ints to represent the number of resources available
 
 # Screenshots
 
-
+![alt text](https://ibb.co/WKJJYbD)
 
 # Individual contribution (Function-wise)
 
