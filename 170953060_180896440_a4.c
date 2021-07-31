@@ -111,7 +111,10 @@ int main(int argc, char *argv[]){
 						pthread_attr_t new_thread;
 						pthread_attr_init(&new_thread);
 						int p=safe_seq[x];
-						my_thread = pthread_create(&my_thread,&new_thread,thread_run,&customers[[safe_seq[x]].ID);
+					        
+						
+						my_thread = pthread_create(&my_thread,&new_thread,thread_run,&customers[safe_seq[x]].ID);
+						sleep(1);
 						if (my_thread !=0){
 							printf("ERROR, THREAD FAIL\n");	
 						}
@@ -128,7 +131,8 @@ int main(int argc, char *argv[]){
 			
 			}else if (mode == 5){
 				printf("Exiting Program....\n");
-				return;
+				exit(0);
+				 
 			}
 				
 				
@@ -214,8 +218,9 @@ int release(int n,int rel[],int Available[]){//release resources
 			customers[n].Allocation[i] -= rel[i];
 			Available[i] += rel[i];
 			//need do not change?
+		}	
 			printf("The resources have been released successfully\n");
-		}
+		
 	}
 	else{
 		printf("invalid release");
@@ -274,41 +279,46 @@ int compare_matrix(int fir[],int sec[]){//compare two matrix, return 1 if first 
 	}
 		 return 1;   
 }
-void logStart(char *tID) {
-	printf("Thread has started");
+void logStart(int *tID) {
+	printf("        Thread has started\n");
 	return;
 }
-void logFinish(char *tID) {
-	printf("Thread has finished");
+void logFinish(int *tID) {
+	printf("        Thread has finished\n");
 	return;
 }
-void logRelease(char *tID) {
-	printf("Thread is realseasing resources");
+void logRelease(int *tID) {
+	printf("        Thread is realseasing resources\n");
+	for( int x =0;x<4;x++){
+		Available[x]+=customers[*tID].Allocation[x];
+	}
 	return;
 }
 
 void *thread_run(void *thread){
   int *t_id = (int*)thread;
   printf("--> Customer/Thread %d\n",*t_id);
-  printf("        Allocated resources:\n");//printing out all the allocated resources
+  printf("        Allocated resources:");//printing out all the allocated resources
   for (int x = 0; x <4 ;x++){
-	  printf("%d",customers[*t_id].Allocation[x]);
+	  printf(" %d",customers[*t_id].Allocation[x]);
   }
   printf("\n");
-  printf("        Needed:\n");//all the maxinum needed resources
+  printf("        Needed:");//all the maxinum needed resources
 	for (int y= 0;y<4;y++){
-		printf("%d",customers[*t_id].Need[y]);
+		printf(" %d",customers[*t_id].Need[y]);
 	}
   printf("\n");
-  printf("        Available:\n");//available resources
+  printf("        Available:");//available resources
   for(int z = 0;z<4;z++){
-  	printf("%d",Available[z]);
-  	//logStart(t_id);//log start
-  	//sleep(3);
-  	//logFinish(t_id);//log finish
-  	//sleep(3);
-  	//logRelease(t_id);//log release all thread used resources
-  	//printf("New available:\n");//print out new available resources
+  	printf(" %d",Available[z]);
+  }
+  printf("\n");
+  logStart(t_id);
+  logFinish(t_id);
+  logRelease(t_id);
+  printf("        New Available:");
+  for(int n=0;n<4;n++){
+	  printf(" %d",Available[n]);
   }
   printf("\n");
   return 0;
