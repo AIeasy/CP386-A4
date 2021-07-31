@@ -105,10 +105,13 @@ int main(int argc, char *argv[]){
 			}else if (mode == 4){
 				if(safe_check(Available,safe_seq)==1){
 					Run(safe_seq);
-					pthread_t my_thread;
+					
 					for (int x=0;x<5;x++){
+						pthread_t my_thread;
+						pthread_attr_t new_thread;
+						pthread_attr_init(&new_thread);
 						int p=safe_seq[x];
-						my_thread = pthread_create(&my_thread,NULL,thread_run,(void*)&p);
+						my_thread = pthread_create(&my_thread,&new_thread,thread_run,&customers[[safe_seq[x]].ID);
 						if (my_thread !=0){
 							printf("ERROR, THREAD FAIL\n");	
 						}
