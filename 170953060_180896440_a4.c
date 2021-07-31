@@ -264,7 +264,7 @@ void logRelease(char *tID) {
 	return;
 }
 
-void* thread_run(void * thread){
+void *thread_run(void * thread){
   int *t_id = (int*)thread;
   printf("--> Customer/Thread %d\n",t_id);
   printf("        Allocated resources:\n");//printing out all the allocated resources
