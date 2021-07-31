@@ -18,7 +18,8 @@ Customer *customers;
 int max[5][4]={{6,4,7,3},{4,2,3,2},{2,5,3,3},{6,3,3,2},{5,5,7,5}};
 int Available[4];
 int main(int argc, char *argv[]){
-
+	
+        printf("Number of Customers: 5");
 	int safe_seq[5];
 	Customer* cus = (Customer*) malloc(sizeof(Customer)*5);
     	customers=cus;
@@ -49,7 +50,7 @@ int main(int argc, char *argv[]){
 		while(1){
 			int input[4];
 			int t_id;
-			printf('Enter command:\n');
+			printf("Enter command:\n");
 			scanf("%s",command);
 			char* token = strtok(command," ");
 			int i =0;
@@ -165,10 +166,11 @@ void request(int n,int req[],int Available[],int safe_seq[]){
 		printf("request greater than need\n");
 		return 0;
 	}
-	if(compare_matrix(req,Available)==1){//if req less than Avai, try to allocation
+	else if(compare_matrix(req,Available)==1){//if req less than Avai, try to allocation
 		alloc(n,req,Available);
 		if(safe_check(Available,safe_seq)==0){
 			rollback(n,req,Available);
+			printf("not safe");
 			//rollback or keep going
 			//let thread wait?
 		}
