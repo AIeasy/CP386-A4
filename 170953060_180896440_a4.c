@@ -43,7 +43,13 @@ int main(int argc, char *argv[]){
 	for(k=0;k<4;k++){
 		printf("%d ",Available[k]);
 	}
-	
+	printf("Maximum resources from file:\n");
+	for(int k = 0;k<5;k++){
+		for(int i = 0;i<4;i++){
+			printf("%d ",customers[n].max[i]);
+		}
+		printf("\n");
+	}
 	//read file and generate max.
 	//safe check
 	if (safe_check(Available,safe_seq)==0){//check if in safe condition.
@@ -54,7 +60,7 @@ int main(int argc, char *argv[]){
 		while(1){
 			int input[4];
 			int t_id;
-			printf("Enter command:\n");
+			printf("Enter command: ");
 			fgets(command, 300, stdin);
 			char* token = strtok(command," ");
 			int i =0;
@@ -103,7 +109,7 @@ int main(int argc, char *argv[]){
 						int p=safe_seq[x];
 						my_thread = pthread_create(&my_thread,NULL,thread_run,&p);
 						if (my_thread !=0){
-							printf("ERROR, THREAD FAIL");	
+							printf("ERROR, THREAD FAIL\n");	
 						}
 					}
 					pthread_exit(NULL);
@@ -149,14 +155,14 @@ int safe_check(int Available[],int safe_seq[]){
 	int k=0;
 	int safe[5]={0,0,0,0,0}; //safe condition, set to false when init.
 	for(int n=0;n<5;n++){//check if all can be in safe condition
-		if(safe[n]==0 && customers[n].Allocation[0] <= work[0] && customers[n].Allocation[1] <= work[1] && customers[n].Allocation[2] <= work[2] && customers[n].Allocation[3] <= work[3]){//try to alloc
+		if(safe[n]==0 && customers[n].Need[0] <= work[0] && customers[n].Need[1] <= work[1] && customers[n].Need[2] <= work[2] && customers[n].Need[3] <= work[3]){//try to alloc
 			work[0] += customers[n].Allocation[0];
 			work[1] += customers[n].Allocation[1];
 			work[2] += customers[n].Allocation[2];
 			work[3] += customers[n].Allocation[3];
 			safe[n] = 1;//change safe to 1
 			safe_seq[k++] = n;
-			n=0;//check again
+			n=-1;//check again
 		}
 	}
 	for(int i=0;i<5;i++){ //check if all in safe condition
@@ -175,7 +181,7 @@ void request(int n,int req[],int Available[],int safe_seq[]){
 		alloc(n,req,Available);
 		if(safe_check(Available,safe_seq)==0){
 			rollback(n,req,Available);
-			printf("not safe");
+			printf("not safe\n");
 			//rollback or keep going
 			//let thread wait?
 		}
@@ -208,7 +214,7 @@ int release(int n,int rel[],int Available[]){//release resources
 		}
 	}
 	else{
-		printf("invalid release");
+		printf("invalid release\n");
 	}
 }
 int status(int Available[]){//print all matirx
