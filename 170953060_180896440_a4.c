@@ -65,7 +65,7 @@ int main(int argc, char *argv[]){
 						mode =1;
 					}else if (strcmp("RL",token)==0){
 						mode = 2;
-					}else if (strcmp("STATUS",token)==0){
+					}else if (strcmp("Status",token)==0){
 						mode=3;
 					}else if (strcmp("RUN",token)==0){
 						mode= 4;
@@ -180,7 +180,7 @@ void request(int n,int req[],int Available[],int safe_seq[]){
 			//let thread wait?
 		}
 		else{
-			printf("State is safe, and request is satisfied");
+			printf("State is safe, and request is satisfied\n");
 		}
 	}
 }
